@@ -17,6 +17,13 @@ public class NDCToDeviceTransformer {
 
     private final NDCScenarioConverter scenarioConverter = new NDCScenarioConverter();
 
+    /**
+     * Transforma um ponto NDC em coordenadas de dispositivo, considerando a resolucao do dispositivo.
+     * Se o ponto NDC estiver no cenario [-1,1] x [-1,1], ele sera convertido para [0,1] x [0,1] antes da transformacao.
+     * @param ndcPoint o ponto NDC a ser transformado.
+     * @param resolution a resolucao do dispositivo.
+     * @return o ponto correspondente em coordenadas de dispositivo.
+     */
     public DevicePoint transform(NDCPoint ndcPoint, DeviceResolution resolution) {
         NDCPoint ndcUnit = ndcPoint.getScenario() == NDCScenario.CENTERED
                 ? scenarioConverter.toUnit(ndcPoint)

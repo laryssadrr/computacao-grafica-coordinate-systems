@@ -15,6 +15,12 @@ import com.cg.coordinates.model.WorldWindow;
  */
 public class WorldToNDCTransformer {
 
+    /**
+     * Transforma um ponto do sistema de coordenadas do mundo para NDC [0,1] x [0,1].
+     * @param window Janela do mundo.
+     * @param point Ponto (x, y) no sistema de coordenadas do mundo.
+     * @return Ponto equivalente no cenario [0,1] x [0,1].
+     */
     public NDCPoint transform(WorldWindow window, WorldPoint point) {
         double ndcx01 = (point.getX() - window.getXmin()) / window.getWidth();
         double ndcy01 = (point.getY() - window.getYmin()) / window.getHeight();

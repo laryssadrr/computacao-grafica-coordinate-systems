@@ -23,9 +23,14 @@ public class DeviceDisplayPanel extends JPanel {
         this.resolution = resolution;
         this.activePixel = activePixel;
         setPreferredSize(new Dimension(resolution.getNdh(), resolution.getNdv()));
-        //setBackground(Color.WHITE);
+        setBackground(Color.BLACK);
     }
 
+    /**
+     * Pinta o painel do dispositivo, chamando drawPixel() para acender o pixel verde na coordenada (dcx, dcy) do dispositivo.
+     * Este metodo é chamado automaticamente pelo Swing quando a tela precisa ser repintada.
+     * @param g objeto Graphics usado para desenhar no painel.
+     */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -34,6 +39,8 @@ public class DeviceDisplayPanel extends JPanel {
 
     /**
      * Pinta um unico pixel na cor verde na coordenada (dcx, dcy) do dispositivo.
+     * @param g objeto Graphics usado para desenhar no painel.
+     * @param point coordenada do pixel a ser pintado.
      */
     private void drawPixel(Graphics g, DevicePoint point) {
         if (point == null) {
@@ -45,6 +52,7 @@ public class DeviceDisplayPanel extends JPanel {
 
     /**
      * Define a coordenada do pixel ativo e solicita a sua repintura
+     * @param devicePoint coordenada do pixel a ser pintado.
      */
     public void setPixel(DevicePoint devicePoint) {
         this.activePixel = devicePoint;

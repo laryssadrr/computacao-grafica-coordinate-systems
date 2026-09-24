@@ -21,6 +21,10 @@ public class ConsoleInputReader {
         this.scanner = scanner;
     }
 
+    /**
+     * Le a janela do mundo (xmin, xmax, ymin, ymax) do usuario.
+     * @return Janela do mundo informada pelo usuario.
+     */
     public WorldWindow lerJanelaDoMundo() {
         System.out.println("=== Janela do mundo ===");
         double xmin = lerDouble("xmin: ");
@@ -30,6 +34,11 @@ public class ConsoleInputReader {
         return new WorldWindow(xmin, xmax, ymin, ymax);
     }
 
+    /**
+     * Le um ponto (x, y) do mundo do usuario, garantindo que o ponto esteja dentro da janela do mundo.
+     * @param window Janela do mundo dentro da qual o ponto deve estar.
+     * @return Ponto do mundo informado pelo usuario.
+     */
     public WorldPoint lerPontoDoMundo(WorldWindow window) {
         System.out.println("=== Ponto no mundo ===");
         while (true) {
@@ -43,6 +52,10 @@ public class ConsoleInputReader {
         }
     }
 
+    /**
+     * Le o cenario de NDC escolhido pelo usuario.
+     * @return Cenario de NDC escolhido pelo usuario.
+     */
     public NDCScenario lerCenarioNDC() {
         System.out.println("=== Cenario de NDC ===");
         System.out.println("1) [0,1] x [0,1]");
@@ -60,6 +73,10 @@ public class ConsoleInputReader {
         }
     }
 
+    /**
+     * Le a resolucao do dispositivo (ndh, ndv) do usuario, com valores padrao caso o usuario nao informe nada.
+     * @return Resolucao do dispositivo informada pelo usuario, ou valores padrao caso o usuario nao informe nada.
+     */
     public DeviceResolution lerResolucaoDispositivo() {
         System.out.println("=== Resolucao do dispositivo ===");
         System.out.printf("ndh (numero de pixels na horizontal) [padrao %d]: ", DEFAULT_NDH);
@@ -69,6 +86,12 @@ public class ConsoleInputReader {
         return new DeviceResolution(ndh, ndv);
     }
 
+    /**
+     * Le um valor double do usuario, tratando erros de formato e pedindo para o usuario
+     * digitar novamente caso o valor seja invalido.
+     * @param prompt Mensagem exibida ao usuario antes da entrada.
+     * @return Valor double informado pelo usuario.
+     */
     private double lerDouble(String prompt) {
         while (true) {
             System.out.print(prompt);
@@ -81,6 +104,13 @@ public class ConsoleInputReader {
         }
     }
 
+    /**
+     * Le um valor double do usuario, garantindo que o valor seja maior que o limite informado.
+     * @param prompt Mensagem exibida ao usuario antes da entrada.
+     * @param limite Limite inferior que o valor deve ultrapassar.
+     * @param mensagemErro Mensagem exibida ao usuario caso o valor informado seja menor ou igual ao limite.
+     * @return Valor double informado pelo usuario, maior que o limite.
+     */
     private double lerDoubleMaiorQue(String prompt, double limite, String mensagemErro) {
         while (true) {
             double valor = lerDouble(prompt);
@@ -91,6 +121,11 @@ public class ConsoleInputReader {
         }
     }
 
+    /**
+     * Le um valor inteiro do usuario, retornando um valor padrao caso o usuario nao informe nada ou informe um valor invalido.
+     * @param valorPadrao Valor padrao a ser retornado caso o usuario nao informe nada ou informe um valor invalido.
+     * @return Valor inteiro informado pelo usuario, ou o valor padrao caso o usuario nao informe nada ou informe um valor invalido.
+     */
     private int lerInteiroOuPadrao(int valorPadrao) {
         String linha = scanner.nextLine().trim();
         if (linha.isEmpty()) {

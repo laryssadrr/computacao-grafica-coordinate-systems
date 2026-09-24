@@ -19,6 +19,16 @@ public class CoordinatePipeline {
     private final NDCScenarioConverter ndcScenarioConverter = new NDCScenarioConverter();
     private final NDCToDeviceTransformer ndcToDeviceTransformer = new NDCToDeviceTransformer();
 
+    /**
+     * Delega a execução de todas as transformacoes de coordenadas, retornando um objeto
+     * contendo todos os pontos intermediarios.
+     *
+     * @param window Janela do mundo.
+     * @param point Ponto (x, y) no sistema de coordenadas do mundo.
+     * @param scenario Cenário ([0,1] x [0,1] ou [-1,1] x [-1,1]) escolhido pelo usuário.
+     * @param resolution Resolucao do dispositivo.
+     * @return TransformationResult contendo todos os pontos intermediarios da transformacao.
+     */
     public TransformationResult execute(WorldWindow window,
                                          WorldPoint point,
                                          NDCScenario scenario,

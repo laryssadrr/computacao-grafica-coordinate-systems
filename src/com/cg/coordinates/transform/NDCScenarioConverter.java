@@ -16,6 +16,8 @@ public class NDCScenarioConverter {
 
     /**
      * Converte de NDC [0,1] x [0,1] para NDC [-1,1] x [-1,1] (cenario II).
+     * @param ndcUnit Ponto no cenario [0,1] x [0,1].
+     * @return Ponto equivalente no cenario [-1,1] x [-1,1].
      */
     public NDCPoint toCentered(NDCPoint ndcUnit) {
         if (ndcUnit.getScenario() != NDCScenario.UNIT) {
@@ -28,6 +30,8 @@ public class NDCScenarioConverter {
 
     /**
      * Converte de NDC [-1,1] x [-1,1] (cenario II) para NDC [0,1] x [0,1].
+     * @param ndcCentered Ponto no cenario [-1,1] x [-1,1].
+     * @return Ponto equivalente no cenario [0,1] x [0,1].
      */
     public NDCPoint toUnit(NDCPoint ndcCentered) {
         if (ndcCentered.getScenario() != NDCScenario.CENTERED) {
